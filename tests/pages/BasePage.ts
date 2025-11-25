@@ -6,4 +6,8 @@ export class BasePage {
   constructor(page: Page) {
     this.page = page;
   }
+
+  async closeCookiesAlert() {
+    await this.page.locator('button[aria-roledescription*="Cookies"]').click();
+  }
 }
