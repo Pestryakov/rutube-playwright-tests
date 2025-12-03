@@ -13,6 +13,7 @@ export const test = base.extend<MyFixtures>({
     const mainPage = new MainPage(page);
     await mainPage.open();
     await mainPage.closeCookiesAlert();
+    await mainPage.closeBanner();
 
     // Use the fixture value in the test.
     await use(mainPage);
