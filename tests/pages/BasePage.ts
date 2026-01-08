@@ -8,10 +8,22 @@ export class BasePage {
   }
 
   async closeCookiesAlert() {
-    await this.page.locator('button[aria-roledescription*="Cookies"]').click();
+    const button = this.page.locator('button[aria-roledescription*="Cookies"]');
+    try {
+      await button.waitFor({ state: 'visible', timeout: 3000 });
+      await button.click();
+    } catch (error) {
+      console.debug('Cookies is not found');
+    }
   }
 
   async closeBanner() {
-    await this.page.getByRole('button', { name: 'Закрыть', exact: true }).click();
+    const closeButton = this.page.getByRole('button', { name: 'Закрыть' });
+    try {
+      await closeButton.waitFor({ state: 'visible', timeout: 3000 });
+      await closeButton.click();
+    } catch (error) {
+      console.debug('Banner is not found');
+    }
   }
 }
